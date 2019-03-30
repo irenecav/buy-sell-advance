@@ -8,6 +8,7 @@
     "install_db": "node ./install_db"
   },
   "dependencies": {
+    "bcrypt": "^3.0.5",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
@@ -22,5 +23,4 @@
   "devDependencies": {
     "cross-env": "^5.2.0"
   }
-
 }

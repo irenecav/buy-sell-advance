@@ -50,11 +50,13 @@ app.use((req, res, next)=>{
    */
 
    const loginController = require('./routes/loginController')
+   const privadoController = require('./routes/privadoController')
 
   app.use('/', require('./routes/index'));
   //usamos el estilo de controladores para estructurar las rutas
   app.get('/login', loginController.index) //ejecuto el metodo index que he creado en el controlador loginController.js, ya que lo hemos hecho el require en lineas anteriores
   app.post('/login',loginController.post)
+  app.get('/admin', privadoController.index)
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {
     next(createError(404));

@@ -8,7 +8,9 @@ const readline = require('readline')
 
 const db = require('./lib/connectMongoose')
 const Anuncio = require('./models/Anuncio')
+const Usuario = require('./models/Usuario') //cogemos el modelo de usuario 
 const anunciosData = require('./data/anuncios.json') 
+const usuariosData = require('./data/usuarios.json') // cogemos el objeto json con los datos de los suarios
 
 db.once('open', async ()=> {
     try{
@@ -23,6 +25,13 @@ db.once('open', async ()=> {
 
        // await initAnuncios()
         await initModel(Anuncio, anunciosData, 'anuncios') 
+
+        //hacer Hash de las contraseñas
+        for (let i = 0; i < usuariosData.length; i++){
+            usuariosData[i].password = await Usuario.hashPassword(usuariosData[i].password)
+        }
+
+        await initModel(Usuario, usuariosData, 'usuarios') //El 3 parametros es el nombre del modelo y solo lo utilizamos para verlo en la consola
 
 
         db.close()

@@ -1,0 +1,38 @@
+<% include header.ejs %>
+
+
+
+  <div class="wrap">
+  
+  <% anuncios.forEach( anuncio => { %>
+  <article>
+  <% if (anuncio.venta) { %>
+      <a  href="https://localhost:3000/?venta=true" class="azul">En venta</a>
+    <% } else if(anuncio.venta === false) { %>
+      <a  href="https://localhost:3000/?venta=false" class= "naranja">Se compra </a>
+    <% } %>
+  <h2> <%= anuncio.nombre %></h2>
+  <% if (anuncio.foto) { %>
+    <figure>
+    <img src="./../images/<%= anuncio.foto %>" >
+    </figure>
+    <% } %>
+    <% if (anuncio.precio) { %>
+  <p> <%= anuncio.precio %> Euros</p>
+  <% } %>
+ 
+  <% anuncio.tags.forEach( tag => { %>
+  <span> <%= tag %> </span>
+  <% }) %>
+
+
+  </article>
+  <!--<p> <%= anuncio.nombre + ' ' + anuncio.venta + ' ' + anuncio.precio + ' ' + anuncio.foto + ' ' + anuncio.tags %></p>-->
+<% }) %>  
+
+</div>
+<% include footer.ejs %>
+
+
+</body>
+</html>

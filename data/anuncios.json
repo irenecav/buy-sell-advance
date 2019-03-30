@@ -1,0 +1,61 @@
+ [{
+            "nombre": "Bicicleta",
+            "venta": true,
+            "precio": 230.15,
+            "foto": "bicicleta.jpg",
+            "tags": ["lifestyle", "motor"]
+
+        },
+        {
+            "nombre": "Iphone 3Gs",
+            "venta": false,
+            "precio": 50.00,
+            "foto": "iphone.jpg",
+            "tags": ["lifestyle", "mobile"]
+        },
+        {
+            "nombre": "Ipad mini",
+            "venta": true,
+            "precio": 490.87,
+            "foto": "ipad.jpg",
+            "tags": ["lifestyle", "mobile", "work"]
+        },
+        
+        {
+            "nombre": "Piano Yamaha",
+            "venta": false,
+            "precio": 150.00,
+            "foto": "piano.jpg",
+            "tags": ["lifestyle"]
+        },
+        {
+            "nombre": "Robot aspirador Xiaomi",
+            "venta": true,
+            "precio": 220.90,
+            "foto": "robot.jpg",
+            "tags": ["lifestyle", "mobile"]
+        },
+        {
+            "nombre": "Impresora 3D",
+            "venta": true,
+            "precio": 80.00,
+            "foto": "impresora.jpg",
+            "tags": ["work"]
+        },
+        {
+            "nombre": "Peluche",
+            "venta": false,
+            "precio": 8.98,
+            "foto": "peluche.jpg",
+            "tags": ["lifestyle"]
+        },
+       
+        {
+            "nombre": "Gato chino",
+            "venta": true,
+            "precio": 4.05,
+            "foto": "gato.jpg",
+            "tags": ["lifestyle"]
+        }
+    ]
+

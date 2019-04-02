@@ -34,14 +34,36 @@ class LoginController { //creo una clase con un metodo index que renderiza la pa
 
 
         //usuario ok
+
+        //guardar el ID del usuario en la sesión
+        req.session.authUser = {
+            _id: usuario._id //el _id es el identificador de mongoDB
+        }
+
+
+
        //     res.redirect('/privado')  No hay que poner las rutas así x si quieres cambiar el nombre de la ruta en un futuro.
-        res.redirect(namedRoutes.privado)
+        res.redirect(namedRoutes.admin)
 
         }catch(err){
             next(err)
         }
       
     }
+
+
+
+    logout(req, res, next) {
+        delete req.session.authUser //asi borra la propiedad authUser de la sesión.
+        req.session.regenerate(err => {
+            if(err) {
+                next(err)
+                return
+            }
+            res.redirect(namedRoutes.anuncios)
+        })
+    }
+
 }
 
 

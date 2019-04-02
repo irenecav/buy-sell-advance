@@ -1,5 +1,6 @@
 'use strict'
 
+require('dotenv').config()
 /**
  * Crear los datos iniciales  de la base de datos
  */
@@ -61,11 +62,20 @@ interfaz.question(pregunta, answer =>{
 }
 
 
+
 async function initModel(Model, data, modelName){
-    const deleted = await Model.deleteMany()
-    console.log(`Eliminados ${deleted.n} ${modelName}` )
-//ahora creamos los anuncios iniciales. Que estan en un fichero JSON de la carpeta data
+
+    try{
+        const deleted = await Model.deleteMany()
+        console.log(`Eliminados ${JSON.parse(deleted).n} ${modelName}` )
+        //ahora creamos los anuncios iniciales. Que estan en un fichero JSON de la carpeta data
    const insertado = await Model.insertMany(data)
    console.log(`Insertado ${insertado.length} ${modelName}. `)
+    
+    }catch(err){
+        next(err)
+    }
+   
+
     
 }

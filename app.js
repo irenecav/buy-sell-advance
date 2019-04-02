@@ -3,6 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session);
+
+
 
 var app = express();
 
@@ -21,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 /**
  * Conexion con la base de datos
  */
-require('./lib/connectMongoose')
+const mongooseConnection = require('./lib/connectMongoose')
 require('./models/Anuncio')
 
 
@@ -43,12 +47,37 @@ app.use((req, res, next)=>{
    */
   app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'))
   
+  /**
+   * Inicializamos y cargamos la sesión del usuario que hace la petición. que ha hecho login.
+   */
+
+   app.use(session({
+     name: 'nodeapi-session',
+     secret: 'srdxfcgv  dfg f ghjkfd tfygiuhioj',
+     resave: false,
+     saveUninitialized: true,
+     cookie: {
+       secure: true,
+       maxAge: 2 * 24 * 60 * 60 * 1000 //caduca la cookie a los dos dias
+     },
+     store: new MongoStore({
+       // le pasamos como conectarse a la base de datos
+       mongooseConnection: mongooseConnection
+     })
+
+   }))
   
-  
+
+      // para tener disponible la sesión en las vistas
+      app.use((req, res, next) => {
+        res.locals.session = req.session;
+        next();
+      });
+
   /**
    * Rutas de nuestra web
    */
-
+   const sessionAuth = require('./lib/sessionAuth')
    const loginController = require('./routes/loginController')
    const privadoController = require('./routes/privadoController')
 
@@ -56,7 +85,8 @@ app.use((req, res, next)=>{
   //usamos el estilo de controladores para estructurar las rutas
   app.get('/login', loginController.index) //ejecuto el metodo index que he creado en el controlador loginController.js, ya que lo hemos hecho el require en lineas anteriores
   app.post('/login',loginController.post)
-  app.get('/admin', privadoController.index)
+  app.get('/logout', loginController.logout)
+  app.get('/admin',sessionAuth(),  privadoController.index) //Aqui utilizo e middleware sessionAuth que esta en sessionAuth.js
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {
     next(createError(404));

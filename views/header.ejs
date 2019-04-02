@@ -25,10 +25,20 @@
   <li>
   <a class="menu__item" href="/"><%= titulo %></a>
   </li>
-  <li>
-  <a class="menu__item" href="/">Login</a>
+  <% if (!session.authUser) { %>
+  <li >
+    <a class="menu__item" href="/login">login</a>
   </li>
+<% } else { %>
+  <li>
+    <a class="menu__item" href="/admin">admin</a>
+  </li>
+  <li >
+    <a class="menu__item" href="/logout">logout</a>
+  </li>
+<% } %>
   </ul>
+
   </nav>
 
 

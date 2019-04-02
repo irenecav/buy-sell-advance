@@ -1,3 +1,6 @@
+require('dotenv').config()
+
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -5,6 +8,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session);
+const jwt = require('jsonwebtoken')
+const namedRoutes = require('./lib/namedRoutes');
 
 
 
@@ -41,11 +46,16 @@ app.use((req, res, next)=>{
    */
   
    app.locals.titulo = 'Anuncios'
-  
+
+   const jwtAuth = require('./lib/jwtAuth')
+
    /**
    * Rutas de nuestra API
    */
-  app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'))
+
+
+  //Creamos un middleware en el que queremos comprobar que nos han mandado el token correspondiente.El que esta enmedio
+  app.use('/apiv1/anuncios', jwtAuth() , require('./routes/apiv1/anuncios'))
   
   /**
    * Inicializamos y cargamos la sesión del usuario que hace la petición. que ha hecho login.
@@ -85,6 +95,8 @@ app.use((req, res, next)=>{
   //usamos el estilo de controladores para estructurar las rutas
   app.get('/login', loginController.index) //ejecuto el metodo index que he creado en el controlador loginController.js, ya que lo hemos hecho el require en lineas anteriores
   app.post('/login',loginController.post)
+  app.post('/loginJWT',loginController.postJWT)
+
   app.get('/logout', loginController.logout)
   app.get('/admin',sessionAuth(),  privadoController.index) //Aqui utilizo e middleware sessionAuth que esta en sessionAuth.js
   // catch 404 and forward to error handler

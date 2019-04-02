@@ -7,9 +7,9 @@
   <% anuncios.forEach( anuncio => { %>
   <article>
   <% if (anuncio.venta) { %>
-      <a  href="https://localhost:3000/?venta=true" class="azul">En venta</a>
+      <a  href="https://localhost:3000/?venta=true" class="azul"><%= __('En venta') %></a>
     <% } else if(anuncio.venta === false) { %>
-      <a  href="https://localhost:3000/?venta=false" class= "naranja">Se compra </a>
+      <a  href="https://localhost:3000/?venta=false" class= "naranja"><%= __('Se compra') %> </a>
     <% } %>
   <h2> <%= anuncio.nombre %></h2>
   <% if (anuncio.foto) { %>

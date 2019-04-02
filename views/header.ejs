@@ -23,18 +23,18 @@
   <nav class="menu"> 
   <ul>
   <li>
-  <a class="menu__item" href="/"><%= titulo %></a>
+  <a class="menu__item" href="/"><%= __('Anuncios') %></a>
   </li>
   <% if (!session.authUser) { %>
   <li >
-    <a class="menu__item" href="/login">login</a>
+    <a class="menu__item" href="/login"><%= __('login') %></a>
   </li>
 <% } else { %>
   <li>
-    <a class="menu__item" href="/admin">admin</a>
+    <a class="menu__item" href="/admin"><%= __('admin') %></a>
   </li>
   <li >
-    <a class="menu__item" href="/logout">logout</a>
+    <a class="menu__item" href="/logout"><%= __('logout') %></a>
   </li>
 <% } %>
   </ul>

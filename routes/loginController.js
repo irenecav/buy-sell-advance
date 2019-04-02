@@ -6,6 +6,7 @@ const Usuario = require('../models/Usuario')
 const namedRoutes = require('../lib/namedRoutes') 
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const i18n = require('../lib/i18nConfigure')()
 
 class LoginController { //creo una clase con un metodo index que renderiza la pagina login
     
@@ -27,7 +28,7 @@ class LoginController { //creo una clase con un metodo index que renderiza la pa
 
         if (!usuario || !await bcrypt.compare(password, usuario.password)){ //Si no encontramos al usuario o la password no es correcta
             res.locals.email = email
-            res.locals.error = 'Invalid credientals' //lo utilizamos para darle valores a las vistas que vamos a renderizar. En este caso un texto con el error que quiero que aparezca en la pagina
+            res.locals.error = i18n.__('Invalid credientals') //lo utilizamos para darle valores a las vistas que vamos a renderizar. En este caso un texto con el error que quiero que aparezca en la pagina
             res.render('login')
             return //para que no siga ejecutandose el codigo de abajo y no intente responder más veces
         }

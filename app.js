@@ -26,6 +26,14 @@ app.use(cookieParser());
 //Cualquier cosa que ponga en public va ser accesible como estatico
 app.use(express.static(path.join(__dirname, 'public')));
 
+/**
+ * Setup de internalizacion (i18n)
+ */
+const i18n = require('./lib/i18nConfigure')()//Tenemos que ejecutar la funcion que importamos
+app.use(i18n.init)//No es una funcion, es una propiedad que paunta a un middleware
+
+console.log(i18n.__('Application tittle'))
+
 
 /**
  * Conexion con la base de datos

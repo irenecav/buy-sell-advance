@@ -65,7 +65,7 @@ class LoginController { //creo una clase con un metodo index que renderiza la pa
         const usuario = await Usuario.findOne({ email: email }) //buscamos que la propiedad email sea igual al valor optenido en email
 
         if (!usuario || !await bcrypt.compare(password, usuario.password)){ //Si no encontramos al usuario o la password no es correcta
-           res.json({ succes: false , error: 'Invalid credentials'})
+           res.json({ succes: false , error: i18n.__('Invalid credentials')})
             return //para que no siga ejecutandose el codigo de abajo y no intente responder más veces
         }
 

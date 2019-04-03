@@ -29,14 +29,32 @@ h2{
   margin-left: 1rem;
 }
 
+.container{
+  padding-top: 2rem;
+}
+
 .menu{
   margin-right: 2rem;
-  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-top: 1rem;
+  display: flex;
+}
+
+.menu__left{
+text-align: left;
+width: 30%;
+padding-left: 0px;
+
+
+}
+
+.menu__right{
+  text-align: right;
+  width: 70%
 }
 
 .menu ul{
   list-style: none;
-  text-align: right;
 
 
 }
@@ -97,7 +115,6 @@ article{
   form{
     margin: 0 auto;
   background-color: rgb(255, 187, 0);
-  width: 50%;
   padding: 2rem;
   border-radius: 25px;
   }
@@ -139,6 +156,11 @@ article{
   @media screen and (min-width: 700px) { 
     article {
         width: 47%;
+
+    }
+
+    form{
+      width: 50%;
 
     }
 

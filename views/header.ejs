@@ -21,20 +21,25 @@
   <!-- Navigation -->
 
   <nav class="menu"> 
-  <ul>
+  <ul class="menu__left">
+  <% getLocales().forEach( locale => { %>
+  <li><a class= "menu__left" href="/change-lang/<%= locale %>"><%= locale.toUpperCase() %></a> </li>
+<% }) %>
+ </ul>
+ <ul class="menu__right">
   <li>
   <a class="menu__item" href="/"><%= __('Anuncios') %></a>
   </li>
   <% if (!session.authUser) { %>
   <li >
-    <a class="menu__item" href="/login"><%= __('login') %></a>
+    <a class="menu__item" href="/login"><%= __('Login') %></a>
   </li>
 <% } else { %>
   <li>
-    <a class="menu__item" href="/admin"><%= __('admin') %></a>
+    <a class="menu__item" href="/admin"><%= __('Admin') %></a>
   </li>
   <li >
-    <a class="menu__item" href="/logout"><%= __('logout') %></a>
+    <a class="menu__item" href="/logout"><%= __('Logout') %></a>
   </li>
 <% } %>
   </ul>

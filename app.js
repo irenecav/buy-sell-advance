@@ -44,7 +44,7 @@ require('./models/Anuncio')
 
 
 app.use((req, res, next)=>{
-  console.log('recibimos una petición ')
+  console.log(i18n.__('recibimos una petición '))
   
   next()
   })
@@ -100,7 +100,9 @@ app.use((req, res, next)=>{
    const privadoController = require('./routes/privadoController')
 
   app.use('/', require('./routes/index'));
+  app.use('/change-lang', require('./routes/change-lang'))
   //usamos el estilo de controladores para estructurar las rutas
+
   app.get('/login', loginController.index) //ejecuto el metodo index que he creado en el controlador loginController.js, ya que lo hemos hecho el require en lineas anteriores
   app.post('/login',loginController.post)
   app.post('/loginJWT',loginController.postJWT)
@@ -122,7 +124,7 @@ app.use((req, res, next)=>{
       const errInfo = err.array({ onlyFirstError:true})[0]
      // console.log(errInfo)
      err.message = isAPIRequest(req) ?
-     {message: 'Not valid', errors: err.mapped()} : `Not valid - ${errInfo.param} ${errInfo.msg}`
+     {message: i18n.__('Not valid'), errors: err.mapped()} : `${i18n.__('Not valid')} - ${errInfo.param} ${errInfo.msg}`
      //err.mapped() me da un array con todo los errores. Si es api request te devuelve el error primero json sino el texto
     }
   

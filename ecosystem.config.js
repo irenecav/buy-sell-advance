@@ -7,6 +7,7 @@ module.exports = {
     instances: 1,
     autorestart: true,
     watch: true,
+   
   },{
     name: 'NODEAPI',
     script: './bin/www',
@@ -15,6 +16,7 @@ module.exports = {
     instances: 1,
     autorestart: true,
     watch: true,
+  
 
   }],
 

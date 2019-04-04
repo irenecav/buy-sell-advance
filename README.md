@@ -14,7 +14,25 @@ Puedes utilizar el script de inicialización de la base de datos con:
 npm run install_db
 ```
 
-## Arranque
+## Arrancar NODEAPI COMPLETA (Todos los microservicios) con pm2
+
+En el caso de no tener pm2
+
+```shell
+npm install pm2 -g
+```
+Arrancamos la App y los microservicios
+```shell
+pm2 start
+```
+
+## Monitorización con pm2
+
+```shell
+pm2 monit
+```
+
+## Arrancar NODEAPI sin microservicio thumbnail
 
 Para arrancar el proyecto usar:
 
@@ -30,11 +48,40 @@ npm start
 npm run dev
 ```
 
+## Arrancar servicio thumbnail
+
+```shell
+node thumbnails_service.js
+```
+
+## Rutas del WEB
+
+* http://localhost:3000
+
+### Para hacer login desde la web
+
+* https://localhost:3000/login
+
 ## Rutas del API
 
 * http://localhost:3000/apiv1/anuncios
 
 Retorna una lista de anuncios
+
+## Authenticación por JWT utilizando Postman
+
+* Hacer una petición post http://localhost:3000/loginJWT, con el email y usuario en el body de la petición, para obtener el token.
+
+* Para utilizar la API http://localhost:3000/apiv1/anuncios incluir en la cabecera el header Authorization con el token. 
+
+##Crear nuevo anuncio con Postman
+* Post http://localhost:3000/apiv1/anuncios con los siguientes datos en el body. (usando form-data)
+
+-nombre
+-venta
+-precio
+-foto (type-file)
+-tags
 
 ## Otra información
 

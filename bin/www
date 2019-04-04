@@ -8,7 +8,7 @@ require('dotenv').config()
 
 var app = require('../app');
 var debug = require('debug')('nodeapi:server');
-var https = require('https');
+var https = require('http');
 const fs = require('fs')
 
 /**
@@ -27,8 +27,8 @@ const options = {
   cert: fs.readFileSync('./certificates/example.com+5.pem')
 } 
 
-var server = https.createServer(options, app);
-//var server = https.createServer(app);
+//var server = https.createServer(options, app);
+var server = https.createServer(app);
 
 
 /**

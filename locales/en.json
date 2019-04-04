@@ -21,5 +21,6 @@
 	"si": "yes",
 	"Eliminados": "Deleted",
 	"Insertado": "Inserted",
-	"Invalid credientaliiis": "Invalid credientaliiis"
+	"Invalid credientaliiis": "Invalid credientaliiis",
+	"Invalid credentials": "Invalid credentials"
 }

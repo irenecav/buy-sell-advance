@@ -11,6 +11,7 @@
     "bcrypt": "^3.0.5",
     "connect-mongo": "^2.0.3",
     "cookie-parser": "~1.4.3",
+    "cote": "^0.19.1",
     "debug": "~2.6.9",
     "dotenv": "^7.0.0",
     "ejs": "~2.5.7",
@@ -23,6 +24,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^4.13.18",
     "morgan": "~1.9.0",
+    "multer": "^1.4.1",
     "nodemon": "^1.18.9",
     "openurl": "^1.1.1"
   },

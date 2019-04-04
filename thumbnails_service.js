@@ -7,7 +7,6 @@ const path = require('path')
 const responder = new cote.Responder({ name: 'thumbnails responder'});
 
 responder.on('create-thumbnail', (req, done) => {
-    console.log('filenameeeee')
     thumb({
         prefix: 'thumb-',
         suffix: '',

@@ -96,9 +96,44 @@ router.get('/:id', async (req, res, next) => {
  * Crear un anuncios
  */
 
-router.post('/', async (req, res, next) => {
+//  router.post('/', async (req, res, next) => {
+//     try {
+//         const data = req.body
+
+//         const anuncio = new Anuncio(data)
+//         //lo guardamos en la bd
+//         const anuncioGuardado = await anuncio.save() 
+
+//         res.json({
+//             success: true,
+//             result: anuncioGuardado
+//         })
+
+//     } catch (err) {
+//         next(err)
+//         return
+//     }
+
+// }) 
+var path = require('path')
+var multer = require('multer')
+
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, path.join(__dirname, '../../public/images/'))
+    },
+    filename: (req, file, cb) => {
+        console.log(file,'aquiiiii el fileeeee')
+        cb(null, file.fieldname + '-' + Date.now())    }
+})
+
+var upload = multer({storage: storage})
+
+
+router.post('/', upload.single('foto'),  async (req, res, next) => {
     try {
         const data = req.body
+        data.foto = req.file.filename;
 
         const anuncio = new Anuncio(data)
         //lo guardamos en la bd
@@ -115,6 +150,17 @@ router.post('/', async (req, res, next) => {
     }
 
 })
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * PUT /anuncios:id

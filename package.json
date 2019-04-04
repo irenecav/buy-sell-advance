@@ -25,6 +25,7 @@
     "mongoose": "^4.13.18",
     "morgan": "~1.9.0",
     "multer": "^1.4.1",
+    "node-thumbnail": "^0.15.0",
     "nodemon": "^1.18.9",
     "openurl": "^1.1.1"
   },

@@ -3,7 +3,9 @@
 const express = require('express')
 const router = express.Router()
 const Anuncio = require('../../models/Anuncio')
+const cote = require('cote');
 
+const requester = new cote.Requester({ name: 'Thumbnail creation client'});
 
 
 router.get('/', async (req, res, next) => {
@@ -124,7 +126,7 @@ var storage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         console.log(file,'aquiiiii el fileeeee')
-        cb(null, file.fieldname + '-' + Date.now())    }
+        cb(null, Date.now()+'-'+file.originalname)    }
 })
 
 var upload = multer({storage: storage})
@@ -134,6 +136,14 @@ router.post('/', upload.single('foto'),  async (req, res, next) => {
     try {
         const data = req.body
         data.foto = req.file.filename;
+        data.thumbnail = 'thumb-' +req.file.filename
+
+        requester.send({
+            type: 'create-thumbnail',
+            filename: data.foto
+          }, response => {
+            console.log('Thumbnail created', response);
+          });
 
         const anuncio = new Anuncio(data)
         //lo guardamos en la bd
@@ -152,6 +162,8 @@ router.post('/', upload.single('foto'),  async (req, res, next) => {
 })
 
 
+
+  
 
 
 

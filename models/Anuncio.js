@@ -8,6 +8,7 @@ const anuncioSchema = mongoose.Schema({
     venta: { type: Boolean, index: true },
     precio: { type: Number, index: true },
     foto: { type: String, index: true },
+    thumbnail: { type: String, index: true },
     tags: { type: [String], index: true }
 }, { collection: 'anuncios' })
 

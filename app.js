@@ -147,7 +147,6 @@ app.use((req, res, next)=>{
   
   });
   
-  
   function isAPIRequest(req){
    return req.originalUrl.indexOf('/apiv') === 0
   }
